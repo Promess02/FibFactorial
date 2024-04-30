@@ -32,16 +32,12 @@ public class MethodChooser {
     }
 
     public static String wyborSilnia(){
-        int minArgumentFactorial = Math.min(Math.min(FactorialRecursive.MAX_ARGUMENT, FactorialIterative.MAX_ARGUMENT), FactorialIterative2.MAX_ARGUMENT);
+        // odpuszczamy factorial recursive, bo wyrzuca stack overflow dla dużych wartości
+        int minArgumentFactorial = Math.min(FactorialIterative2.MAX_ARGUMENT, FactorialIterative.MAX_ARGUMENT);
 
         long start = System.currentTimeMillis();
-        FactorialRecursive.factorial(minArgumentFactorial);
-        long end = System.currentTimeMillis();
-
-        long timeFactorialRecursive = end - start;
-        start = System.currentTimeMillis();
         FactorialIterative.factorial(minArgumentFactorial);
-        end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
 
         long timeFactorialIterative = end - start;
         start = System.currentTimeMillis();
@@ -49,12 +45,9 @@ public class MethodChooser {
         end = System.currentTimeMillis();
         long timeFactorialIterative2 = end - start;
 
-
-        long min_time = Math.min(Math.min(timeFactorialRecursive, timeFactorialIterative),timeFactorialIterative2);
-        if(min_time==timeFactorialRecursive) return "Wybrany zostaje algorytm rekurencyjny do obliczania silni!";
-
+        long min_time = Math.min(timeFactorialIterative2, timeFactorialIterative);
         if(min_time==timeFactorialIterative) return "Wybrany zostaje algorytm iteracyjny 1 do obliczania silni!";
+        else return "Wybrany zostaje algorytm iteracyjny 2 do obliczania silni!";
 
-        return "Wybrany zostaje algorytm iteracyjny 2 do obliczania silni!";
     }
 }

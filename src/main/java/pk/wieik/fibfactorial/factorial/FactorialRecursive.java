@@ -3,10 +3,10 @@ package pk.wieik.fibfactorial.factorial;
 import java.math.BigInteger;
 
 public class FactorialRecursive {
-    public static int MAX_ARGUMENT = 7003;
+    public static int MAX_ARGUMENT = 8500;
     public static void main(String[] args) {
 
-        int j=7000;
+        int j=8000;
         while(true){
             long start = System.currentTimeMillis();
             BigInteger value = factorial(j);
@@ -14,7 +14,7 @@ public class FactorialRecursive {
             long time = end - start;
             System.out.println("time: " + time + ", j: " + j + ", value: " + value);
             if(time>5000) break;
-            j+=1;
+            j+=100;
         }
         System.out.println("max n value: " + j);
         System.out.println("out of loop");
